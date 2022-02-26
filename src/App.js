@@ -1,25 +1,78 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from 'react'
+import './App.scss'
+import 'antd/dist/antd.css'
+import { Layout, Menu } from 'antd'
+import { Routes, Route, Link, Navigate } from 'react-router-dom'
+import AddScreen from './screens/Add'
+import HistoryScreen from './screens/History'
+import UserScreen from './screens/User'
+const { Header, Content, Sider } = Layout
 
 function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        <Layout>
+          <Header className="header">
+            <div className="logo" />
+            <h1 style={{ color: 'white' }}>NutriSG</h1>
+            <Menu theme="dark" mode="horizontal"></Menu>
+          </Header>
+          <Layout>
+            <Sider
+              width={256}
+              style={{ position: 'fixed', zIndex: 1, height: '100%' }}
+            >
+              <div className="logo" />
+              <Menu
+                defaultSelectedKeys={['1']}
+                defaultOpenKeys={['sub1']}
+                mode="inline"
+                theme="dark"
+              >
+                <Menu.Item key="user">
+                  <Link key="user" to="/user">
+                    User
+                  </Link>
+                </Menu.Item>
+                <Menu.Item key="history">
+                  <Link key="history" to="/history">
+                    Food Log
+                  </Link>
+                </Menu.Item>
+                <Menu.Item key="add">
+                  <Link key="add" to="/add">
+                    Add new entry
+                  </Link>
+                </Menu.Item>
+              </Menu>
+            </Sider>
+            <Layout style={{ padding: '24px 24px 24px 280px' }}>
+              <Content
+                className="site-layout-background"
+                style={{
+                  padding: 24,
+                  margin: 0,
+                  minHeight: 280,
+                }}
+              >
+                <Routes>
+                  <Route
+                    exact
+                    path="/"
+                    element={<Navigate replace to="/history" />}
+                  ></Route>
+                  <Route path="/add" element={<AddScreen />}></Route>
+                  <Route path="/user" element={<UserScreen />}></Route>
+                  <Route path="/history" element={<HistoryScreen />}></Route>
+                </Routes>
+              </Content>
+            </Layout>
+          </Layout>
+        </Layout>
       </header>
     </div>
-  );
+  )
 }
 
-export default App;
+export default App
