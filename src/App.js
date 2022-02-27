@@ -6,6 +6,8 @@ import { Routes, Route, Link, Navigate } from 'react-router-dom'
 import AddScreen from './screens/Add'
 import HistoryScreen from './screens/History'
 import UserScreen from './screens/User'
+import InsightsScreen from './screens/Insights'
+
 const { Header, Content, Sider } = Layout
 
 function App() {
@@ -41,6 +43,11 @@ function App() {
                   </Link>
                 </Menu.Item>
                 <Menu.Item key="add">
+                  <Link key="insights" to="/insights">
+                    Health Insights
+                  </Link>
+                </Menu.Item>
+                <Menu.Item key="add">
                   <Link key="add" to="/add">
                     Add new entry
                   </Link>
@@ -65,6 +72,7 @@ function App() {
                   <Route path="/add" element={<AddScreen />}></Route>
                   <Route path="/user" element={<UserScreen />}></Route>
                   <Route path="/history" element={<HistoryScreen />}></Route>
+                  <Route path="/insights" element={<InsightsScreen />}></Route>
                 </Routes>
               </Content>
             </Layout>
