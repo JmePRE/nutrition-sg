@@ -16,7 +16,7 @@ function InsightsScreen(props) {
         bordered={false}
         style={{ width: 600 }}
       >
-        <p>Card content</p>
+        <img src="https://cdn.dribbble.com/users/52635/screenshots/2896524/media/80a12faf5b043fedcc53acc9dda915bc.png?compress=1&resize=400x300&vertical=top" />
       </Card>
       <Card
         title="Total Weekly Calorie Intake"
