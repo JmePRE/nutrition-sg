@@ -7,28 +7,23 @@ function HistoryScreen(props) {
     description:
       'Your daily energy intake has exceeded the recommended for the average human. You are advised to watch your remaining calorie intake for the day.',
   })
-  /*
+  
   const [userHistory, setUserHistory] = useState([
     {
       name: 'Brown rice laksa noodles, cooked',
       energy: '107 kcal',
-      time_added: 1645932161,
+      time_added: 1645933438208,
     },
     {
-      name: 'Brown rice laksa noodles, cooked',
-      energy: '107 kcal',
-      time_added: 1645932161,
+      name: 'Burger, double whopper with cheese, Burger King',
+      energy: '266 kcal',
+      time_added: 1645933468208,
     },
-    {
-      name: 'Brown rice laksa noodles, cooked',
-      energy: '107 kcal',
-      time_added: 1645932161,
-    },
-  ]) */
+  ])
 
   return (
     <div>
-      <h1>My Food Log</h1>
+      <h2>My Food Log</h2>
       {message ? (
         <Alert
           message={message.message}
@@ -36,9 +31,9 @@ function HistoryScreen(props) {
           type="error"
           showIcon
         />
-      ) : null}
+      ) : null} 
       <Table
-        title={() => <h3>Deal Information</h3>}
+        title={() => <h3>Total Intake: <strong>{ userHistory.map(u => parseFloat(u.energy.split(' ')[0])).reduce((a, b) => a + b, 0) }</strong> kcal</h3>}
         columns={[
           {
             title: 'Name of Food',
@@ -55,9 +50,7 @@ function HistoryScreen(props) {
             dataIndex: 'time_added',
             key: 'time_added',
             render: (text, record) => (
-              <div className="dates">
-                <p>{new Date(record.time_added * 1000)}</p>
-              </div>
+              <span>{new Date(record.time_added).toLocaleString()}</span>
             ),
           },
           {

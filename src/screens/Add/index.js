@@ -11,8 +11,8 @@ function AddScreen(props) {
     console.log(value)
     await ApiManager.getFoodList(value)
       .then((res) => {
-        setFood(res.data)
-        console.log(res.data)
+        setFood(res)
+        console.log(res)
       })
       .catch((err) => Message.error(err))
   }
