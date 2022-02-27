@@ -1,8 +1,7 @@
 import React, { Component, useState, useEffect } from 'react'
-import { Table, Button, message as Message } from 'antd'
+import { Table, Button, message as Message, Alert } from 'antd'
 
 function HistoryScreen(props) {
-
   const [message, setMessage] = useState(null)
   const [userHistory, setUserHistory] = useState([
     {
@@ -23,19 +22,22 @@ function HistoryScreen(props) {
   ])
 
   setMessage({
-    message: "Warning: Daily calorie intake exceeded",
-    description: "Your daily energy intake has exceeded the recommended for the average human. You are advised to watch your remaining calorie intake for the day."
+    message: 'Warning: Daily calorie intake exceeded',
+    description:
+      'Your daily energy intake has exceeded the recommended for the average human. You are advised to watch your remaining calorie intake for the day.',
   })
 
   return (
     <div>
       <h1>My Food Log</h1>
-      {message ? <Alert
-      message={message.message}
-      description={message.description}
-      type="error"
-      showIcon
-    />}
+      {message ? (
+        <Alert
+          message={message.message}
+          description={message.description}
+          type="error"
+          showIcon
+        />
+      ) : null}
       <Table
         title={() => <h3>Deal Information</h3>}
         columns={[
