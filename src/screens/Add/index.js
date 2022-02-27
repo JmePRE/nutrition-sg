@@ -6,6 +6,7 @@ const { Search } = Input
 
 function AddScreen(props) {
   const [food, setFood] = useState(null)
+  const [message, setMessage] = useState(null)
 
   const onSearch = async (value) => {
     console.log(value)
@@ -26,6 +27,9 @@ function AddScreen(props) {
           style={{ width: '100%' }}
           addonBefore="Search Food"
         />
+        {message ? (
+          <Alert message={message.message} type="success" closable />
+        ) : null}
         {food ? (
           <Table
             title={() => <h3>Food Details</h3>}
@@ -44,7 +48,11 @@ function AddScreen(props) {
                 title: 'Add',
                 dataIndex: 'add',
                 key: 'add',
-                render: () => <Button>Add to Log</Button>,
+                render: () => (
+                  <Button onClick={setMessage('Successfully added')}>
+                    Add to Log
+                  </Button>
+                ),
               },
             ]}
             dataSource={food}
