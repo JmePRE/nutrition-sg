@@ -6,25 +6,30 @@ const { Search } = Input
 
 function AddScreen(props) {
   const [food, setFood] = useState(null)
+  const [loading, setLoading] = useState(false)
 
   const onSearch = async (value) => {
     console.log(value)
+    setLoading(true)
     await ApiManager.getFoodList(value)
       .then((res) => {
         setFood(res)
         console.log(res)
       })
       .catch((err) => Message.error(err))
+      .finally(() => setLoading(false))
   }
 
   return (
     <div>
+      <h2>Add a new entry</h2>
       <div class="top-bar">
         <Search
           placeholder="input search text"
           onSearch={onSearch}
           style={{ width: '100%' }}
           addonBefore="Search Food"
+          loading={loading}
         />
         {food ? (
           <Table
