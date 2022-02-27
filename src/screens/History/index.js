@@ -15,9 +15,9 @@ function HistoryScreen(props) {
       time_added: 1645933438208,
     },
     {
-      name: 'Burger, double whopper with cheese, Burger King',
-      energy: '266 kcal',
-      time_added: 1645933468208,
+      name: 'Chendol',
+      energy: '105 kcal',
+      time_added: 1645935815016,
     },
   ])
 

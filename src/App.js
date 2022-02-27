@@ -42,7 +42,7 @@ function App() {
                     Food Log
                   </Link>
                 </Menu.Item>
-                <Menu.Item key="add">
+                <Menu.Item key="insights">
                   <Link key="insights" to="/insights">
                     Health Insights
                   </Link>
