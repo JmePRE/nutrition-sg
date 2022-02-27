@@ -1,31 +1,20 @@
-import React, { Component } from 'react'
-import { Input, message as Message } from 'antd'
+import React, { Component, useState, useEffect } from 'react'
+import { Input, message as Message, Table, Button } from 'antd'
 import ApiManager from './../../api/ApiManager'
 
 const { Search } = Input
 
 function AddScreen(props) {
-  const onSearch = async value => {
+  const [food, setFood] = useState(null)
+
+  const onSearch = async (value) => {
     console.log(value)
     await ApiManager.getFoodList(value)
-      .then(res => {
-        //setOrder(res.data)
-        /*
-          form.setFieldsValue({
-            qty: res.data.qty,
-            status: res.data.status,
-            nama: res.data.shipping_address.name,
-            telepon: res.data.shipping_address.phone_number.slice(3),
-            alamat: res.data.shipping_address.address,
-            provinsi: res.data.shipping_address.province,
-            kota: res.data.shipping_address.city,
-            kecamatan: res.data.shipping_address.district,
-            zip: res.data.shipping_address.postal_code,
-            catatan: res.data.remarks,
-          })*/
-        console.log(res)
+      .then((res) => {
+        setFood(res.data)
+        console.log(res.data)
       })
-      .catch(err => Message.error(err))
+      .catch((err) => Message.error(err))
   }
 
   return (
@@ -37,6 +26,31 @@ function AddScreen(props) {
           style={{ width: '100%' }}
           addonBefore="Search Food"
         />
+        {food ? (
+          <Table
+            title={() => <h3>Food Details</h3>}
+            columns={[
+              {
+                title: 'Name of Food',
+                dataIndex: 'name',
+                key: 'energy',
+              },
+              {
+                title: 'Energy (Kcal)',
+                dataIndex: 'energy',
+                key: 'energy',
+              },
+              {
+                title: 'Add',
+                dataIndex: 'add',
+                key: 'add',
+                render: () => <Button>Add to Log</Button>,
+              },
+            ]}
+            dataSource={food}
+            pagination={false}
+          />
+        ) : null}
       </div>
     </div>
   )
