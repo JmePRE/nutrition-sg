@@ -1,5 +1,5 @@
 import React, { Component, useState, useEffect } from 'react'
-import { Input, message as Message, Table, Button } from 'antd'
+import { Input, message as Message, Table, Button, Alert } from 'antd'
 import ApiManager from './../../api/ApiManager'
 
 const { Search } = Input
@@ -33,11 +33,11 @@ function AddScreen(props) {
           loading={loading}
         />
         {message ? (
-          <Alert message={message.message} type="success" closable />
+          <Alert message={message} type="success" closable />
         ) : null}
         {food ? (
           <Table
-            title={() => <h3>Food Details</h3>}
+            title={''}
             columns={[
               {
                 title: 'Name of Food',
@@ -51,10 +51,9 @@ function AddScreen(props) {
               },
               {
                 title: 'Add',
-                dataIndex: 'add',
                 key: 'add',
-                render: () => (
-                  <Button onClick={setMessage('Successfully added')}>
+                render: (record) => (
+                  <Button onClick={() => Message.success(`Successfully added "${record.name}"`)}>
                     Add to Log
                   </Button>
                 ),
